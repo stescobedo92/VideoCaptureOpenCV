@@ -1,12 +1,23 @@
-﻿// VideoCaptureOpenCV.cpp : Defines the entry point for the application.
-//
-
-#include "VideoCaptureOpenCV.h"
+﻿#include "VideoCaptureOpenCV.h"
 
 using namespace std;
+using namespace cv;
 
 int main()
 {
-	cout << "Hello CMake." << endl;
+	Mat image;
+	namedWindow("WebCam");
+	VideoCapture cap(0);
+
+	if (!cap.isOpened()) {
+		cout << "cannot open camera";
+	}
+
+	while (true) {
+		cap >> image;
+		imshow("WebCam", image);
+		waitKey(25);
+	}
+
 	return 0;
 }
